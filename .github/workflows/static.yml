@@ -32,17 +32,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-    
-      - name: Install dependencies
-        run: |
-            pip install -r requirements.txt    
-      - name: Run selenium tests
-        run: python './tests/main.py'
-
       - name: Setup Pages
         if: success()
         uses: actions/configure-pages@v4
@@ -53,6 +42,27 @@ jobs:
         with:
           # Upload entire repository
           path: './src'
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+    
+      - name: Install dependencies
+        run: |
+            pip install -r requirements.txt  
+      - name: Removing previous chrome instances on runner 
+        run: sudo apt purge google-chrome-stable  
+      
+      - name: Installing all necessary packages
+        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
+      
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
+        
+      - name: Run selenium tests
+        run: python tests/main.py
+
 
       - name: Deploy to GitHub Pages
         id: deployment
