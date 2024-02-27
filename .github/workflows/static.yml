@@ -41,7 +41,7 @@ jobs:
         run: |
             pip install -r requirements.txt    
       - name: Run selenium tests
-        run: python tests/main.py
+        run: python './tests/main.py'
 
       - name: Setup Pages
         if: success()
