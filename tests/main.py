@@ -1,3 +1,4 @@
+import sys
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -21,7 +22,7 @@ class TestPersonalBrandWebsite(unittest.TestCase):
 
     def test_header_content(self):
         # Check if the header contains the correct name and role
-        expected_name = "Abid Malik"
+        expected_name = "Abid H. Malik"
         expected_role = "ECommerce Specialist"
 
         header = self.driver.find_element(By.CSS_SELECTOR,"header")
@@ -44,5 +45,6 @@ class TestPersonalBrandWebsite(unittest.TestCase):
         self.assertNotEqual("", content)
 
 if __name__ == "__main__":
-    unittest.main()
+    result = unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(TestPersonalBrandWebsite))
+    sys.exit(not result.wasSuccessful())
     
