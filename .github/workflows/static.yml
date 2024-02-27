@@ -59,9 +59,9 @@ jobs:
       
       - name: Install xvfb
         run: sudo apt-get install xvfb
-        
+
       - name: Run selenium tests
-        run: python tests/main.py
+        run: python main.py
 
 
       - name: Deploy to GitHub Pages
